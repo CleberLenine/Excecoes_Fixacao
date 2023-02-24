@@ -5,8 +5,12 @@ public class Account {
 	private Integer number;
 	private String holder;
 	private Double balance;
-	private Double withdrawLimit;
+	private Double withdrawLimit; 
 	
+	public Account() {
+		
+	}
+			
 	public Account(Integer number, String holder, Double balance, Double withdrawLimit) {
 		this.number = number;
 		this.holder = holder;
@@ -44,9 +48,19 @@ public class Account {
 		balance += amount;
 	}
 	
-	public void withdraw(Double amount) {
+	public void withdraw(Double amount) { 
 		balance -= amount;
 	}
 
+	public String validateWithdraw(double amount) {
+		if (amount > getWithdrawLimit()) {
+			return "Withdraw Error: The amount exceeds withdraw limit";
+		}
+		if (amount > getBalance()) {
+			return "Withdraw Error: Not enough balance";
+		}
+		return null;
+		
+	}
 }
 				
